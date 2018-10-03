@@ -4,7 +4,6 @@ import IngredientsSection from '../components/IngredientsSection'
 const BurgerBuilderPage = () => {
   return (
     <div>
-      BurgerBuilderPage
       <Burger />
       <IngredientsSection />
     </div>

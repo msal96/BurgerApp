@@ -38,8 +38,8 @@ class IngredientsSection extends Component {
 }
 
 const IngredientsSectionWrapper = styled.div`
-  background-color: brown
-  color: white
+  background-color: #c58d3c
+  color: #280f02
   height: 50%
   width: 100%
   display: flex
