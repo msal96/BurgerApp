@@ -3,22 +3,35 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { capitalize } from 'lodash'
 
-import { addIngredient } from '../actions/actions'
+import { addIngredient, updateCurrentPrice } from '../actions/actions'
 
 class IngredientsSection extends Component {
+  
+  onClickMore = (type, amount) => {
+    const { addIngredient, updateCurrentPrice } = this.props
+    addIngredient(type, 1)
+    updateCurrentPrice(amount)
+  }
+  onClickLess = (type, amount) => {
+    const { addIngredient, updateCurrentPrice } = this.props
+    addIngredient(type, -1)
+    updateCurrentPrice(amount)
+  }
   render () {
-    const { ingredients, addIngredient } = this.props
+    const { ingredients, currentPrice } = this.props
     return (
       <IngredientsSectionWrapper>
+        <CurrentPrice>Current Price: {currentPrice}</CurrentPrice>
         {
           ingredients.map(item => (
             <IngredientWrapper key={item.type}>
               {capitalize(item.type)}: {item.amount}
-              <button onClick={() => addIngredient(item.type, -1)}>Less</button>
-              <button onClick={() => addIngredient(item.type, 1)}>More</button>
+              <button onClick={() => this.onClickLess(item.type, -1 * item.price)}>Less</button>
+              <button onClick={() => this.onClickMore(item.type, item.price)}>More</button>
             </IngredientWrapper>
           ))
         }
+        <OrderButton> ORDER NOW </OrderButton>
       </IngredientsSectionWrapper>
     )
   }
@@ -40,12 +53,23 @@ const IngredientWrapper = styled.div`
   display: flex
   justify-content: space-between
 `
+const OrderButton = styled.button`
+  width: 100px
+  margin-bottom: 5px
+  background-color: yellow
+  color: black
+`
+const CurrentPrice = styled.p`
+  color: black
+`
 const mapStateToProps = (state) => ({
-  ingredients: state.ingredients
+  ingredients: state.ingredients,
+  currentPrice: state.currentPrice
 })
 
 const mapDispatchToProps = {
-  addIngredient
+  addIngredient,
+  updateCurrentPrice
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(IngredientsSection)

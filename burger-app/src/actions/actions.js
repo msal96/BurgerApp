@@ -5,3 +5,9 @@ export const addIngredient = (type, amount) => ({
     amount
   }
 })
+export const updateCurrentPrice = (amount) => ({
+  type: 'UPDATE_CURRENT_PRICE',
+  payload: {
+    amount
+  }
+})
