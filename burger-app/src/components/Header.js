@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Ingredient = () => {
+const Header = () => {
     return (
         <div>
-            Ingredient
+            Header
         </div>
     )
 }
 
-export default Ingredient
+export default Header
