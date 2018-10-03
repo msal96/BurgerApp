@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+
+import Routing from './routing/routing'
 
 class App extends Component {
   render () {
     return (
       <div>
-        Burger App
+        <Routing />
       </div>
     );
   }
