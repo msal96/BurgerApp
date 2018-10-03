@@ -22,6 +22,6 @@ const Burger = () => {
   )
 }
 const BurgerWrapper = styled.div`
-  height: 100%
+  height: 50%
 `
 export default Burger
