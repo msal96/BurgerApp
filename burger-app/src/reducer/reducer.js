@@ -21,9 +21,12 @@ const modifyItemAmount = (items, type, value) => {
 }
 const updateChosenIngredients = (arr, ingredient, action) => {
   let result = [...arr]
+  let reversedArr = result.reverse()
   action === 'add' ? result.push(ingredient)
-    : result.pop(ingredient)
-  return result
+    : reversedArr.splice(reversedArr.indexOf(ingredient), 1)
+  reversedArr.reverse()
+  return action === 'add'
+    ? result : reversedArr
 }
 const reducer = (state = initialState, action) => {
   switch (action.type) {

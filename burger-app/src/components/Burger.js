@@ -16,11 +16,11 @@ class Burger extends Component {
     return (
       <BurgerWrapper>
         <BreadTop />
-        { arr.map(item =>
-          item === 'salad' ? <Salad />
-            : item === 'meat' ? <Meat />
-              : item === 'cheese' ? <Cheese />
-                : item === 'bacon' ? <Bacon /> : null) }
+        { arr.map((item, index) =>
+          item === 'salad' ? <Salad key={index} />
+            : item === 'meat' ? <Meat key={index} />
+              : item === 'cheese' ? <Cheese key={index} />
+                : item === 'bacon' ? <Bacon key={index} /> : null) }
         <BreadBottom />
       </BurgerWrapper>
     )
