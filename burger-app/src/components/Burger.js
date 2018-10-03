@@ -7,14 +7,21 @@ import {
   Cheese,
   Salad,
   Bacon
-} from '../styling/Styling'
+} from '../styling/ingredientsStyling'
 
 const Burger = () => {
   return (
-    <div>
-      Burger
-    </div>
+    <BurgerWrapper>
+      <BreadTop />
+      <Meat />
+      <Cheese />
+      <Salad />
+      <Bacon />
+      <BreadBottom />
+    </BurgerWrapper>
   )
 }
-
+const BurgerWrapper = styled.div`
+  height: 100%
+`
 export default Burger
