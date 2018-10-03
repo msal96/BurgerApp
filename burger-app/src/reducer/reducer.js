@@ -1,17 +1,31 @@
 import Constants from '../constants/constants'
 
 const initialState = {
-  totalPrice: 0,
-  currentPrice: 0,
-  count: 0
+  ingredients: [
+    { type: 'salad', amount: 0 },
+    { type: 'meat', amount: 0 },
+    { type: 'cheese', amount: 0 },
+    { type: 'bacon', amount: 0 }
+  ]
 }
+
+const modifyItemAmount = (items, type, value) => {
+  return items.map(item =>
+    item.type === type
+      ? { ...item, amount: item.amount + value }
+      : item
+  )
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case Constants.INCREMENT:
+    case 'ADD_INGREDIENT': {
+      const payload = action.payload
       return {
         ...state,
-        Count: state.count + action.payload
+        ingredients: modifyItemAmount(state.ingredients, payload.type, payload.amount)
       }
+    }
     default: return state
   }
 }
