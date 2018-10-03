@@ -1,3 +1,3 @@
 export default {
-  INCREMENT: 'INCREMENT'
+  ADD_INGREDIENT: 'ADD_INGREDIENT'
 }

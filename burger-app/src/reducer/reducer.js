@@ -1,4 +1,4 @@
-import Constants from '../constants/constants'
+import constants from '../constants/constants'
 
 const initialState = {
   ingredients: [
@@ -19,7 +19,7 @@ const modifyItemAmount = (items, type, value) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_INGREDIENT': {
+    case constants.ADD_INGREDIENT: {
       const payload = action.payload
       return {
         ...state,
