@@ -3,19 +3,21 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { capitalize } from 'lodash'
 
-import { addIngredient, updateCurrentPrice } from '../actions/actions'
+import { addIngredient, updateCurrentPrice, updateChosenIngredients } from '../actions/actions'
 
 class IngredientsSection extends Component {
   
   onClickMore = (type, amount) => {
-    const { addIngredient, updateCurrentPrice } = this.props
+    const { addIngredient, updateCurrentPrice, updateChosenIngredients } = this.props
     addIngredient(type, 1)
     updateCurrentPrice(amount)
+    updateChosenIngredients(type, 'add')
   }
   onClickLess = (type, amount) => {
-    const { addIngredient, updateCurrentPrice } = this.props
+    const { addIngredient, updateCurrentPrice, updateChosenIngredients } = this.props
     addIngredient(type, -1)
     updateCurrentPrice(amount)
+    updateChosenIngredients(type, 'remove')
   }
   render () {
     const { ingredients, currentPrice } = this.props
@@ -69,7 +71,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   addIngredient,
-  updateCurrentPrice
+  updateCurrentPrice,
+  updateChosenIngredients
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(IngredientsSection)
