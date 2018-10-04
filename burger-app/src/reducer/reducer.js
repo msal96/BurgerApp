@@ -79,6 +79,7 @@ const reducer = (state = initialState, action) => {
           { type: 'cheese', amount: 0, price: 2 },
           { type: 'bacon', amount: 0, price: 3 }
         ],
+        chosenIngredients: [],
         currentPrice: 0
       }
     default: return state
