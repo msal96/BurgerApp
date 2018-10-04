@@ -43,7 +43,6 @@ const reducer = (state = initialState, action) => {
         currentPrice: currentPrice + amount
       }
     case constants.UPDATE_CHOSEN_INGREDIENTS:
-      console.log('New arr:', updateChosenIngredients(state.chosenIngredients, action.payload.ingredient, action.payload.action))
       return {
         ...state,
         chosenIngredients: updateChosenIngredients(state.chosenIngredients, action.payload.ingredient, action.payload.action)
