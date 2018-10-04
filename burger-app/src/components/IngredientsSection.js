@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
-import { addIngredient, updateCurrentPrice, updateChosenIngredients } from '../actions/actions'
+import { addIngredient, updateCurrentPrice, updateChosenIngredients, toggleModal } from '../actions/actions'
 
 class IngredientsSection extends Component {
 
@@ -21,8 +21,9 @@ class IngredientsSection extends Component {
     updateChosenIngredients(type, 'remove')
     }
   }
+
   render() {
-    const { ingredients, currentPrice } = this.props
+    const { ingredients, currentPrice, toggleModal } = this.props
     return (
       <IngredientsSectionWrapper>
         <CurrentPrice>Current Price: {currentPrice}</CurrentPrice>
@@ -41,7 +42,7 @@ class IngredientsSection extends Component {
             </IngredientWrapper>
           ))
         }
-        <OrderButton> ORDER NOW </OrderButton>
+        <OrderButton onClick={() => toggleModal(true)}> ORDER NOW </OrderButton>
       </IngredientsSectionWrapper>
     )
   }
@@ -109,13 +110,15 @@ const IngredientAmount = styled.span`
 `
 const mapStateToProps = (state) => ({
   ingredients: state.ingredients,
-  currentPrice: state.currentPrice
+  currentPrice: state.currentPrice,
+  showModal: state.showModal
 })
 
 const mapDispatchToProps = {
   addIngredient,
   updateCurrentPrice,
-  updateChosenIngredients
+  updateChosenIngredients,
+  toggleModal
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(IngredientsSection)

@@ -1,3 +1,5 @@
+
+
 export const addIngredient = (type, amount) => ({
   type: 'ADD_INGREDIENT',
   payload: {
@@ -16,5 +18,11 @@ export const updateChosenIngredients = (ingredient, action) => ({
   payload: {
     ingredient,
     action
+  }
+})
+export const toggleModal = (show) => ({
+  type: 'TOGGLE_MODAL',
+  payload: {
+    show
   }
 })

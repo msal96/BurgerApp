@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+import { toggleModal } from '../actions/actions'
 
 const OrderSummary = (props) => {
     const ingredientSummary = props.ingredients
@@ -17,6 +19,8 @@ const OrderSummary = (props) => {
                 {ingredientSummary}
             </ul>
             <p>Continue to Checkout?</p>
+            <button onClick={() => props.toggleModal(false)}>Cancel</button>
+            <button>Continue</button>
         </OrderSummaryWrapper>
     )
 }
@@ -31,4 +35,8 @@ const IngredientName = styled.span`
     text-transform: capitalize
 `
 
-export default OrderSummary
+const mapDispatchToProps = {
+    toggleModal
+}
+
+export default connect(null, mapDispatchToProps)(OrderSummary)

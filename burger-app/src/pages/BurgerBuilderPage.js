@@ -9,9 +9,10 @@ import OrderSummary from '../components/OrderSummary'
 const BurgerBuilderPage = (props) => {
   return (
     <div>
-      <Modal>
+      { props.showModal 
+      ? <Modal>
         <OrderSummary ingredients={props.ingredients}/>
-      </Modal>
+      </Modal> : null}
       <Burger />
       <IngredientsSection />
     </div>
@@ -20,6 +21,8 @@ const BurgerBuilderPage = (props) => {
 
 const mapStateToProps = (state) => ({
   ingredients: state.ingredients,
+  showModal: state.showModal
 })
   
+
 export default connect(mapStateToProps, null)(BurgerBuilderPage)

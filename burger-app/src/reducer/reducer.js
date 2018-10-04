@@ -9,7 +9,8 @@ const initialState = {
   ],
   chosenIngredients: [],
   currentPrice: 0,
-  totalPrice: 0
+  totalPrice: 0,
+  showModal: false
 }
 
 const modifyItemAmount = (items, type, value) => {
@@ -46,6 +47,13 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         chosenIngredients: updateChosenIngredients(state.chosenIngredients, action.payload.ingredient, action.payload.action)
+      }
+    case constants.TOGGLE_MODAL:
+      const { show } = action.payload
+      console.log(show)
+      return {
+        ...state,
+        showModal: show
       }
     default: return state
   }
