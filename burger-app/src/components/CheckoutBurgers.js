@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 const CheckoutBurgers = props => {
   return (
     <div>
-      {props.basket.map(item => typeof(item) !== 'number'
+      {props.basket.map(item => typeof (item) !== 'number'
         ? <div>
           <p>{item.type}: {item.amount}</p>
         </div>
