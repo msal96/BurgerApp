@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { capitalize } from 'lodash'
 
 import { addIngredient, updateCurrentPrice } from '../actions/actions'
 
@@ -25,13 +24,14 @@ class IngredientsSection extends Component {
         {
           ingredients.map(item => (
             <IngredientWrapper key={item.type}>
-              {capitalize(item.type)}: {item.amount}
+              <IngredientName>{(item.type)}:</IngredientName> 
+              <IngredientAmount>{item.amount}</IngredientAmount>
               <SelectQuantityButton
-                onClick={() => this.onClickLess(item.type, -1 * item.price)}> -
+                onClick={() => this.onClickLess(item.type, -1 * item.price)}> Less
               </SelectQuantityButton>
 
               <SelectQuantityButton
-                onClick={() => this.onClickMore(item.type, item.price)}> +
+                onClick={() => this.onClickMore(item.type, item.price)}> More
               </SelectQuantityButton>
             </IngredientWrapper>
           ))
@@ -49,15 +49,15 @@ const IngredientsSectionWrapper = styled.div`
   padding: 1.5em 0
   display: flex
   flex-direction: column
-  justify-content: flex-end
   align-items: center
   font-family: Kodchasan
 `
 const IngredientWrapper = styled.div`
-  margin: 0.5em 2em
+  margin: 0.5em
   width: 20%
   display: flex
-  justify-content: space-between
+  justify-content: flex-end
+  align-items: center
 `
 const OrderButton = styled.button`
   padding: 0.5em
@@ -83,6 +83,7 @@ const CurrentPrice = styled.p`
 `
 const SelectQuantityButton = styled.button`
   padding: 0.5em 0.75em
+  margin: 0 2em
   cursor: pointer
   border: none
   border-radius: 20px
@@ -95,7 +96,12 @@ const SelectQuantityButton = styled.button`
     background-color: #885a32
   }
 `
-
+const IngredientName = styled.span`
+  text-transform: capitalize
+`
+const IngredientAmount = styled.span`
+  padding: 0 2em
+`
 const mapStateToProps = (state) => ({
   ingredients: state.ingredients,
   currentPrice: state.currentPrice
