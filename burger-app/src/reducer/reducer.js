@@ -7,12 +7,17 @@ const initialState = {
     { type: 'cheese', amount: 0, price: 2 },
     { type: 'bacon', amount: 0, price: 3 }
   ],
+  basket: [],
   chosenIngredients: [],
   currentPrice: 0,
   totalPrice: 0,
   showModal: false
 }
-
+const filterByAmount = (arr) => {
+  let result = []
+  arr.map(item => item.amount > 0 ? result.push(item) : null)
+  return result
+}
 const modifyItemAmount = (items, type, value) => {
   return items.map(item =>
     item.type === type
@@ -54,6 +59,27 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         showModal: show
+      }
+    case constants.ADD_TO_BASKET:
+      const { ingredients, basket } = state
+      let burger = filterByAmount(ingredients)
+      basket.push(...burger)
+      basket.push(state.currentPrice)
+      console.log('basket:', basket)
+      return {
+        ...state,
+        basket
+      }
+    case constants.RESET_INGREDIENTS:
+      return {
+        ...state,
+        ingredients: [
+          { type: 'salad', amount: 0, price: 1 },
+          { type: 'meat', amount: 0, price: 4 },
+          { type: 'cheese', amount: 0, price: 2 },
+          { type: 'bacon', amount: 0, price: 3 }
+        ],
+        currentPrice: 0
       }
     default: return state
   }

@@ -6,23 +6,26 @@ import IngredientsSection from '../components/IngredientsSection'
 import Modal from '../components/UI/Modal'
 import OrderSummary from '../components/OrderSummary'
 
-const BurgerBuilderPage = (props) => {
+const BurgerBuilderPage = props => {
   return (
     <div>
-      { props.showModal 
-      ? <Modal>
-        <OrderSummary ingredients={props.ingredients}/>
-      </Modal> : null}
+      {props.showModal ? (
+        <Modal>
+          <OrderSummary ingredients={props.ingredients} />
+        </Modal>
+      ) : null}
       <Burger />
       <IngredientsSection />
     </div>
   )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   ingredients: state.ingredients,
   showModal: state.showModal
 })
-  
 
-export default connect(mapStateToProps, null)(BurgerBuilderPage)
+export default connect(
+  mapStateToProps,
+  null
+)(BurgerBuilderPage)
