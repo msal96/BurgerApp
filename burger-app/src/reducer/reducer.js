@@ -19,14 +19,12 @@ const modifyItemAmount = (items, type, value) => {
       : item
   )
 }
+
 const updateChosenIngredients = (arr, ingredient, action) => {
   let result = [...arr]
-  let reversedArr = result.reverse()
   action === 'add' ? result.push(ingredient)
-    : reversedArr.splice(reversedArr.indexOf(ingredient), 1)
-  reversedArr.reverse()
-  return action === 'add'
-    ? result : reversedArr
+    : result.splice(result.lastIndexOf(ingredient), 1)
+  return result
 }
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -45,6 +43,7 @@ const reducer = (state = initialState, action) => {
         currentPrice: currentPrice + amount
       }
     case constants.UPDATE_CHOSEN_INGREDIENTS:
+      console.log('New arr:', updateChosenIngredients(state.chosenIngredients, action.payload.ingredient, action.payload.action))
       return {
         ...state,
         chosenIngredients: updateChosenIngredients(state.chosenIngredients, action.payload.ingredient, action.payload.action)
