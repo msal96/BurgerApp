@@ -14,10 +14,13 @@ class IngredientsSection extends Component {
     updateChosenIngredients(type, 'add')
   }
   onClickLess = (type, amount) => {
-    const { addIngredient, updateCurrentPrice, updateChosenIngredients } = this.props
+    const { addIngredient, updateCurrentPrice, updateChosenIngredients, ingredients } = this.props
+    let result = ingredients.map(item => item.type === type && item.amount>0)
+    if(result.includes(true)) {
     addIngredient(type, -1)
     updateCurrentPrice(amount)
     updateChosenIngredients(type, 'remove')
+    }
   }
   render () {
     const { ingredients, currentPrice } = this.props
