@@ -7,6 +7,7 @@ const initialState = {
     { type: 'cheese', amount: 0, price: 2 },
     { type: 'bacon', amount: 0, price: 3 }
   ],
+  chosenIngredients: [],
   currentPrice: 0,
   totalPrice: 0
 }
@@ -17,6 +18,13 @@ const modifyItemAmount = (items, type, value) => {
       ? { ...item, amount: item.amount + value }
       : item
   )
+}
+
+const updateChosenIngredients = (arr, ingredient, action) => {
+  let result = [...arr]
+  action === 'add' ? result.push(ingredient)
+    : result.splice(result.lastIndexOf(ingredient), 1)
+  return result
 }
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -33,6 +41,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         currentPrice: currentPrice + amount
+      }
+    case constants.UPDATE_CHOSEN_INGREDIENTS:
+      return {
+        ...state,
+        chosenIngredients: updateChosenIngredients(state.chosenIngredients, action.payload.ingredient, action.payload.action)
       }
     default: return state
   }

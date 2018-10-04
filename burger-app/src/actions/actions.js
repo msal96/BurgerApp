@@ -11,3 +11,10 @@ export const updateCurrentPrice = (amount) => ({
     amount
   }
 })
+export const updateChosenIngredients = (ingredient, action) => ({
+  type: 'UPDATE_CHOSEN_INGREDIENTS',
+  payload: {
+    ingredient,
+    action
+  }
+})
