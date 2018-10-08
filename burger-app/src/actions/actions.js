@@ -1,3 +1,6 @@
+export const resetIngredients = () => ({
+  type: 'RESET_INGREDIENTS'
+})
 export const addIngredient = (type, amount) => ({
   type: 'ADD_INGREDIENT',
   payload: {
@@ -17,4 +20,13 @@ export const updateChosenIngredients = (ingredient, action) => ({
     ingredient,
     action
   }
+})
+export const toggleModal = (show) => ({
+  type: 'TOGGLE_MODAL',
+  payload: {
+    show
+  }
+})
+export const addToBasket = () => ({
+  type: 'ADD_TO_BASKET'
 })

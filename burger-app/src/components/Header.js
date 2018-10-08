@@ -3,21 +3,21 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Header = () => {
-    return (
-        <HeaderWrapper>
-            <Logo>Logo</Logo>
+  return (
+    <HeaderWrapper>
+      <Logo>Logo</Logo>
 
-            <HeaderButtonsWrapper>
-                <NavLink to='/'>
-                    <HeaderButton>Burger Builder</HeaderButton>
-                </NavLink>
+      <HeaderButtonsWrapper>
+        <NavLink to='/'>
+          <HeaderButton>Burger Builder</HeaderButton>
+        </NavLink>
 
-                <NavLink to='/checkout' >
-                    <HeaderButton>Checkout</HeaderButton>
-                </NavLink>
-            </HeaderButtonsWrapper>
-        </HeaderWrapper>
-    )
+        <NavLink to='/checkout'>
+          <HeaderButton>Checkout</HeaderButton>
+        </NavLink>
+      </HeaderButtonsWrapper>
+    </HeaderWrapper>
+  )
 }
 
 const HeaderWrapper = styled.div`
@@ -30,14 +30,14 @@ const HeaderWrapper = styled.div`
     align-items: center
 `
 const Logo = styled.div`
-    margin: 1em
+  margin: 1em;
 `
 const HeaderButtonsWrapper = styled.div`
     display: flex
     align-items: center
 `
 const HeaderButton = styled.button`
-    margin: 0 1em
+  margin: 0 1em
     background-color: transparent
     color: white
     border: none
@@ -47,11 +47,11 @@ const HeaderButton = styled.button`
     box-sizing: border-box
     padding: 0.75em
     &:focus {
-        outline: none
-    }
-    &:hover {
-        background-color: #885a32
-    }
+    outline: none;
+  }
+  &:hover {
+    background-color: #885a32;
+  }
 `
 
 export default Header
