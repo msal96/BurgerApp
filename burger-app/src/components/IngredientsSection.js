@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
@@ -43,6 +44,7 @@ class IngredientsSection extends Component {
           ))
         }
         <OrderButton onClick={() => toggleModal(true)}> ORDER NOW </OrderButton>
+        <NavLink to='/checkout'><OrderButton> Go to checkout </OrderButton></NavLink>
       </IngredientsSectionWrapper>
     )
   }

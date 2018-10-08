@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { toggleModal, addToBasket, resetIngredients } from '../actions/actions'
@@ -24,7 +23,6 @@ const OrderSummary = props => {
       <p>Continue to Checkout?</p>
       <button onClick={() => props.toggleModal(false)}>Cancel</button>
       <button onClick={() => addToBasketAndResetIngredients()}>Add to basket and make other burger</button>
-      <NavLink to='checkout'><button onClick={() => props.toggleModal(false)}>Continue</button></NavLink>
     </OrderSummaryWrapper>
   )
 }

@@ -22,7 +22,7 @@ class Burger extends Component {
   }
   
   render () {
-    const arr = this.props.chosenIngredients
+    const arr = [...this.props.chosenIngredients].reverse()
     return (
       <BurgerWrapper>
         <BreadTop />

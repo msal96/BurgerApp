@@ -61,14 +61,22 @@ const reducer = (state = initialState, action) => {
         showModal: show
       }
     case constants.ADD_TO_BASKET:
-      const { ingredients, basket } = state
-      let burger = filterByAmount(ingredients)
-      basket.push(...burger)
-      basket.push(state.currentPrice)
-      console.log('basket:', basket)
+      let { ingredients, basket, totalPrice } = state
+      let burger = {
+        ingredients: filterByAmount(ingredients),
+        price: state.currentPrice
+      }
+      totalPrice += burger.price
+      console.log(burger)
+      // burger = filterByAmount(ingredients)
+      // console.log('brg:', burger)
+      basket.push(burger)
+      // basket.push(state.currentPrice)
+      // console.log('basket:', basket)
       return {
         ...state,
-        basket
+        basket,
+        totalPrice
       }
     case constants.RESET_INGREDIENTS:
       return {
