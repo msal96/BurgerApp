@@ -26,13 +26,21 @@ const mapStateToProps = state => ({
   totalPrice: state.totalPrice
 })
 export default connect(mapStateToProps, null)(CheckoutBurgers)
+
 const CheckoutDiv = styled.div`
   display: flex;
   justify-content: center;
   margin: 1em;
 `
 const Column = styled.div`
-  margin: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 0.5em 1em 1em 1em;
+  border-radius: 1em;
+  background-color: antiquewhite;
+  margin: 2em 1em;
   text-transform: capitalize;
 `
 const Price = styled.div`

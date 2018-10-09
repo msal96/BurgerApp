@@ -21,8 +21,8 @@ const OrderSummary = props => {
       <p>A delicious burger with the following ingredients:</p>
       <ul>{ingredientSummary}</ul>
       <p>Continue to Checkout?</p>
-      <button onClick={() => props.toggleModal(false)}>Cancel</button>
-      <button onClick={() => addToBasketAndResetIngredients()}>Add to basket and make other burger</button>
+      <Button onClick={() => props.toggleModal(false)}>Cancel</Button>
+      <Button onClick={() => addToBasketAndResetIngredients()}>Add to basket and make another burger</Button>
     </OrderSummaryWrapper>
   )
 }
@@ -35,6 +35,23 @@ const ListItem = styled.li`
 `
 const IngredientName = styled.span`
   text-transform: capitalize;
+`
+const Button = styled.button`
+    margin: 0.25em;
+    padding: 0.75em;
+    margin-bottom: 5px;
+    background-color: #6FB748;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    &:focus {
+        outline: none;
+    }
+    &:hover {
+        background-color: yellow;
+        color: black;
+    }
 `
 
 const mapDispatchToProps = {
