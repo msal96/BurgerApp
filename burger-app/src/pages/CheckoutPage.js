@@ -3,7 +3,6 @@ import CheckoutBurgers from '../components/CheckoutBurgers'
 const CheckoutPage = () => {
   return (
     <div>
-      CheckoutPage
       <CheckoutBurgers />
     </div>
   )
