@@ -7,8 +7,7 @@ function * sendOrderToDb () {
   yield call(sendOrderToDynamo, order)
 }
 export default function * mainSaga () {
-  yield all(
-    [
-      yield takeLatest(constants.CONFIRM_ORDER, sendOrderToDb)
-    ])
+  yield all([
+    yield takeLatest(constants.CONFIRM_ORDER, sendOrderToDb)
+  ])
 }
