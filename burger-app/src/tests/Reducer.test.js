@@ -26,18 +26,13 @@ describe('Reducer testing', () => {
         type: 'salad',
         amount: 1
       }
-    })).toEqual({
+    })).toEqual({...initialState,
       ingredients: [
         { type: 'salad', amount: 1, price: 1 },
         { type: 'meat', amount: 0, price: 4 },
         { type: 'cheese', amount: 0, price: 2 },
         { type: 'bacon', amount: 0, price: 3 }
-      ],
-      basket: [],
-      chosenIngredients: [],
-      currentPrice: 0,
-      totalPrice: 0,
-      showModal: false
+      ]
     })
   })
   it('should should extract correctly an ingredient', () => {
