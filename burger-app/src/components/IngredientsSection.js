@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+import Extra from '../components/Extra'
 
 import { addIngredient, updateCurrentPrice, updateChosenIngredients, toggleModal } from '../actions/actions'
 
@@ -26,6 +27,10 @@ class IngredientsSection extends Component {
   render() {
     const { ingredients, currentPrice, toggleModal } = this.props
     return (
+    <BiggestDiv>
+      <ExtraIngredients>
+        <Extra />
+      </ExtraIngredients>
       <IngredientsSectionWrapper>
         <CurrentPrice>Current Price: {currentPrice}</CurrentPrice>
         {
@@ -46,6 +51,7 @@ class IngredientsSection extends Component {
         <OrderButton onClick={() => toggleModal(true)}> ORDER NOW </OrderButton>
         <NavLink to='/checkout'><OrderButton> Go to checkout </OrderButton></NavLink>
       </IngredientsSectionWrapper>
+    </BiggestDiv>
     )
   }
 }
@@ -66,6 +72,23 @@ const IngredientWrapper = styled.div`
   display: flex
   justify-content: flex-end
   align-items: center
+`
+const BiggestDiv = styled.div`
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: row
+`
+const ExtraIngredients = styled.div`
+background-color: #c58d3c
+color: #280f02
+width: 100%
+height: 315px
+padding: 1.5em 0
+display: flex
+flex-direction: column
+align-items: center
+font-family: Kodchasan
 `
 const OrderButton = styled.button`
   padding: 0.5em

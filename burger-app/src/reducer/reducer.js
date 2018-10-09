@@ -84,6 +84,12 @@ const reducer = (state = initialState, action) => {
         chosenIngredients: [],
         currentPrice: 0
       }
+    case constants.ADD_EXTRA_INGREDIENT:
+      const {type, price} = action.payload
+      return {
+        ...state,
+        ingredients: [ ...state.ingredients, { type: type, amount: 0, price: price } ]
+      }
     default: return state
   }
 }

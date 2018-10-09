@@ -32,3 +32,10 @@ export const toggleModal = (show) => ({
 export const addToBasket = () => ({
   type: constants.ADD_TO_BASKET
 })
+export const addExtraIngredient = (type, price) => ({
+  type: constants.ADD_EXTRA_INGREDIENT,
+  payload: {
+    type,
+    price
+  }
+})
