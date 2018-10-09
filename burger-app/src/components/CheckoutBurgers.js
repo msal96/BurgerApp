@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 
 const CheckoutBurgers = props => {
-  console.log('ssss', props.basket)
   const basket = [...props.basket]
   const {totalPrice} = props
   return (

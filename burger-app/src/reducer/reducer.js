@@ -55,7 +55,6 @@ const reducer = (state = initialState, action) => {
       }
     case constants.TOGGLE_MODAL:
       const { show } = action.payload
-      console.log(show)
       return {
         ...state,
         showModal: show
@@ -67,12 +66,7 @@ const reducer = (state = initialState, action) => {
         price: state.currentPrice
       }
       totalPrice += burger.price
-      console.log(burger)
-      // burger = filterByAmount(ingredients)
-      // console.log('brg:', burger)
       basket.push(burger)
-      // basket.push(state.currentPrice)
-      // console.log('basket:', basket)
       return {
         ...state,
         basket,

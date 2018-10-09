@@ -1,12 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Modal = (props) => {
-    return (
-        <ModalWrapper>
-            {props.children}
-        </ModalWrapper>
-    )
+const Modal = props => {
+  return <ModalWrapper>{props.children}</ModalWrapper>
 }
 
 const ModalWrapper = styled.div`

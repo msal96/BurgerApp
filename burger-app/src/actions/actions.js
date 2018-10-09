@@ -1,32 +1,34 @@
+import constants from '../constants/constants'
+
 export const resetIngredients = () => ({
-  type: 'RESET_INGREDIENTS'
+  type: constants.RESET_INGREDIENTS
 })
 export const addIngredient = (type, amount) => ({
-  type: 'ADD_INGREDIENT',
+  type: constants.ADD_INGREDIENT,
   payload: {
     type,
     amount
   }
 })
 export const updateCurrentPrice = (amount) => ({
-  type: 'UPDATE_CURRENT_PRICE',
+  type: constants.UPDATE_CURRENT_PRICE,
   payload: {
     amount
   }
 })
 export const updateChosenIngredients = (ingredient, action) => ({
-  type: 'UPDATE_CHOSEN_INGREDIENTS',
+  type: constants.UPDATE_CHOSEN_INGREDIENTS,
   payload: {
     ingredient,
     action
   }
 })
 export const toggleModal = (show) => ({
-  type: 'TOGGLE_MODAL',
+  type: constants.TOGGLE_MODAL,
   payload: {
     show
   }
 })
 export const addToBasket = () => ({
-  type: 'ADD_TO_BASKET'
+  type: constants.ADD_TO_BASKET
 })
