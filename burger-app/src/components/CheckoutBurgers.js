@@ -9,15 +9,15 @@ const CheckoutBurgers = props => {
     <CheckoutDiv>
           Your Basket
       {basket.map((item, index) =>
-        <div key={index}>
+        <Column key={index}>
           {item.ingredients.map((ingredient, index) =>
             <div key={index}>
               <p>{ingredient.type}: {ingredient.amount}</p>
             </div>)}
-          <div>Price: {item.price}</div>
-        </div>
+          <Price>Price: {item.price}</Price>
+        </Column>
       )}
-      <div>Total: {totalPrice}</div>
+      <TotalPrice>Total: {totalPrice}</TotalPrice>
     </CheckoutDiv>
   )
 }
@@ -28,6 +28,17 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, null)(CheckoutBurgers)
 const CheckoutDiv = styled.div`
   display: flex;
-  justify-content: center
-  background-color: yellow
+  justify-content: center;
+  margin: 1em;
+`
+const Column = styled.div`
+  margin: 1em;
+  text-transform: capitalize;
+`
+const Price = styled.div`
+  font-weight: bold;
+`
+const TotalPrice = styled.div`
+  font-weight: bold;
+  margin-left: 1em;
 `
