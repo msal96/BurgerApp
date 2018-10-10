@@ -3,7 +3,13 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 
-import { addIngredient, updateCurrentPrice, updateChosenIngredients, toggleModal } from '../actions/actions'
+import { 
+  addIngredient, 
+  updateCurrentPrice, 
+  updateChosenIngredients, 
+  toggleModal, 
+  initialIngredientsLoad 
+} from '../actions/actions'
 
 class IngredientsSection extends Component {
 
@@ -21,6 +27,10 @@ class IngredientsSection extends Component {
     updateCurrentPrice(amount)
     updateChosenIngredients(type, 'remove')
     }
+  }
+
+  componentDidMount () {
+    initialIngredientsLoad()
   }
 
   render() {

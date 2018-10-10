@@ -32,3 +32,28 @@ export const toggleModal = (show) => ({
 export const addToBasket = () => ({
   type: constants.ADD_TO_BASKET
 })
+
+export const putIngredientsToGS = (ingredients) => ({
+  type: constants.PUT_INGS_TO_GLOBAL_STATE,
+  payload: {
+    ingredients
+  }
+})
+
+export const putIdToGS = (id) => ({
+  type: constants.PUT_ID_TO_GLOBAL_STATE,
+  payload: {
+    id
+  }
+})
+
+export const putCartToGS = (cart) => ({
+  type: constants.PUT_CART_TO_GLOBAL_STATE,
+  payload: {
+    cart
+  }
+})
+
+export const initialIngredientsLoad = () => ({
+  type: constants.INITIAL_ING_LOAD,
+})
