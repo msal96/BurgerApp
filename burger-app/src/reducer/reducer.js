@@ -1,4 +1,10 @@
 import constants from '../constants/constants'
+import { 
+  formatIngredients, 
+  filterByAmount, 
+  modifyItemAmount, 
+  updateChosenIngredients
+} from './helpers'
 
 const initialState = {
   // ingredients: [
@@ -7,6 +13,7 @@ const initialState = {
   //   { type: 'cheese', amount: 0, price: 2 },
   //   { type: 'bacon', amount: 0, price: 3 }
   // ],
+
   ingredients: {
     normal: [],
     extra: []
@@ -19,51 +26,16 @@ const initialState = {
   cartId: ''
 }
 
-const formatIngredients = (normalObj, extraObj) => {
-  let result = {
-    normal: [],
-    extra: []
-  }
-  
-  for (let i in normalObj) {
-    result.normal.push({type: i, amount: 0, price: normalObj[i]})
-  }
-
-  for (let i in extraObj) {
-    result.extra.push({type: i, amount: 0, price: extraObj[i]})
-  }
-
-  return result
-}
-
-const filterByAmount = (arr) => {
-  let result = []
-  arr.map(item => item.amount > 0 ? result.push(item) : null)
-  return result
-}
-
-const modifyItemAmount = (items, type, value) => {
-  return items.map(item =>
-    item.type === type
-      ? { ...item, amount: item.amount + value }
-      : item
-  )
-}
-
-const updateChosenIngredients = (arr, ingredient, action) => {
-  let result = [...arr]
-  action === 'add' ? result.push(ingredient)
-    : result.splice(result.lastIndexOf(ingredient), 1)
-  return result
-}
-
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case constants.ADD_INGREDIENT: {
-      const payload = action.payload
+      const {type, amount} = action.payload
       return {
         ...state,
-        ingredients: modifyItemAmount(state.ingredients, payload.type, payload.amount)
+        ingredients: {
+          normal: modifyItemAmount(state.ingredients.normal, type, amount),
+          extra: [...state.ingredients.extra]
+        }
       }
     }
     case constants.UPDATE_CURRENT_PRICE:
@@ -111,6 +83,8 @@ const reducer = (state = initialState, action) => {
       }
       case constants.PUT_INGS_TO_GLOBAL_STATE:
         const { normalIngrediends, extraIngredients } = action.payload.ingredients
+          console.log('ssss:', normalIngrediends, extraIngredients)
+          console.log('fct:', formatIngredients(normalIngrediends, extraIngredients))
         return {
           ...state,
           ingredients: formatIngredients(normalIngrediends, extraIngredients)

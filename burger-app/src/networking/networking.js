@@ -1,23 +1,8 @@
 import axios from 'axios'
 
-export const getIngredientsFromDB = () => {
-  axios({
-    method: 'GET',
-    url: '/products'
-  })
-  .then(data => resolve(data))
-  .catch(error => console.log(error))
-}
+export const getIngredientsFromDB = () => axios.get('https://e7va3q02e4.execute-api.us-east-1.amazonaws.com/BurgersApi/products')
 
-export const initializeCartInDB = () => {
-  axios({
-    method: 'POST',
-    url: '/cart',
-    data: {}
-  })
-  .then(id => resolve(id))
-  .catch(error => console.log(error))
-}
+export const initializeCartInDB = () => axios.post('https://e7va3q02e4.execute-api.us-east-1.amazonaws.com/BurgersApi/products/cart')
 
 export const addItemToCartInDB = (ingredients, burgerPrice, cartId) => {
   const url = '/cart/' + cartId
@@ -29,7 +14,7 @@ export const addItemToCartInDB = (ingredients, burgerPrice, cartId) => {
       burgerPrice
     }
   })
-  .then(data => resolve(data))
+  .then(data => console.log(data))
   .catch(error => console.log(error))
 }
 
@@ -38,7 +23,7 @@ export const getCartContentFromDB = () => {
     method: 'GET',
     url: '/cart/{cartId}',
   })
-  .then(cart => resolve(cart))
+  .then(cart => console.log(cart))
   .catch(error => console.log(error))
 }
 
@@ -50,6 +35,6 @@ export const sendOrderToDB = (order) => {
       order
     }
   })
-  .then(data => resolve(data))
+  .then(data => console.log(data))
   .catch(error => console.log(error))
 }

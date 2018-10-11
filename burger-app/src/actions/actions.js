@@ -55,5 +55,5 @@ export const putCartToGS = (cart) => ({
 })
 
 export const initialIngredientsLoad = () => ({
-  type: constants.INITIAL_ING_LOAD,
+  type: constants.INITIAL_ING_LOAD
 })

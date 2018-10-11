@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 import { 
   addIngredient, 
@@ -12,7 +13,7 @@ import {
 } from '../actions/actions'
 
 class IngredientsSection extends Component {
-
+  
   onClickMore = (type, amount) => {
     const { addIngredient, updateCurrentPrice, updateChosenIngredients } = this.props
     addIngredient(type, 1)
@@ -30,7 +31,7 @@ class IngredientsSection extends Component {
   }
 
   componentDidMount () {
-    initialIngredientsLoad()
+    this.props.initialIngredientsLoad()
   }
 
   render() {
@@ -39,7 +40,7 @@ class IngredientsSection extends Component {
       <IngredientsSectionWrapper>
         <CurrentPrice>Current Price: {currentPrice}</CurrentPrice>
         {
-          ingredients.map(item => (
+          ingredients.normal.map(item => (
             <IngredientWrapper key={item.type}>
               <IngredientName>{(item.type)}:</IngredientName> 
               <IngredientAmount>{item.amount}</IngredientAmount>
@@ -130,7 +131,8 @@ const mapDispatchToProps = {
   addIngredient,
   updateCurrentPrice,
   updateChosenIngredients,
-  toggleModal
+  toggleModal,
+  initialIngredientsLoad
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(IngredientsSection)

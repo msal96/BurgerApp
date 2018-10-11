@@ -44,7 +44,8 @@ const StartingMessage = styled.p`
 `
 
 const mapStateToProps = state => ({
-  chosenIngredients: state.chosenIngredients
+  chosenIngredients: []
+  // state.chosenIngredients
 })
 const BurgerWrapper = styled.div`
   height: 50%

@@ -17,12 +17,17 @@ import {
 } from '../actions/actions'
 
 function * getIngredients () {
-  const ingredients = yield call(getIngredientsFromDB)
-  yield put(putIngredientsToGS(ingredients))
+  const response = yield call(getIngredientsFromDB)
+  console.log('[GET INGREDIENTS SAGA]', response)
+  if (response.status === 200) {
+    console.log('aici')
+    yield put(putIngredientsToGS(response.data))
+  }
 }
 
 function * getCartId () {
   const id = yield call(initializeCartInDB)
+  console.log('[GET CART ID SAGA]', id)
   yield put(putIdToGS(id))
 }
 
@@ -45,9 +50,9 @@ function * placeOrder () {
 export default function * mainSaga() {
   yield all([
     yield takeLatest(constants.INITIAL_ING_LOAD, getIngredients),
-    // yield takeLatest(constants._, getCartId),
-    // yield takeLatest(constants.CONFIRM_ORDER, addBurgerToCart),
-    // yield takeLatest(constants.CONFIRM_ORDER, getCartContent),
-    yield takeLatest(constants.CONFIRM_ORDER, placeOrder)
+    // yield takeLatest(constants.PUT_ID_TO_GLOBAL_STATE, getCartId),
+    // // yield takeLatest(constants.CONFIRM_ORDER, addBurgerToCart),
+    // // yield takeLatest(constants.CONFIRM_ORDER, getCartContent),
+    // yield takeLatest(constants.CONFIRM_ORDER, placeOrder)
   ])
 }
