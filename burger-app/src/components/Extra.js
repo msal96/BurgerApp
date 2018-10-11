@@ -9,7 +9,7 @@ const Extra = (props) => {
     <MainDiv>
       <div>Extra ingredients</div>
       {
-        extra.map(item => <button onClick={() => addExtraIngredient(item)}>{item.type}</button>)
+        extra.map((item, index) => <button key={index} onClick={() => addExtraIngredient(item)}>{item.type}</button>)
       }
     </MainDiv>
   )

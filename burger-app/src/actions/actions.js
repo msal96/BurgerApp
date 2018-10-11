@@ -35,13 +35,12 @@ export const addToBasket = () => ({
 export const sendBurgerToDb = () => ({
   type: constants.SEND_BURGER_TO_DB
 })
-export const putIngredientsToGS = (ingredients) => ({
+export const putIngredientsToGS = ingredients => ({
   type: constants.PUT_INGS_TO_GLOBAL_STATE,
   payload: {
     ingredients
   }
 })
-
 export const putIdToGS = (id) => ({
   type: constants.PUT_ID_TO_GLOBAL_STATE,
   payload: {
@@ -49,7 +48,7 @@ export const putIdToGS = (id) => ({
   }
 })
 
-export const putCartToGS = (cart) => ({
+export const putCartToGS = cart => ({
   type: constants.PUT_CART_TO_GLOBAL_STATE,
   payload: {
     cart
@@ -58,6 +57,12 @@ export const putCartToGS = (cart) => ({
 
 export const initialIngredientsLoad = () => ({
   type: constants.INITIAL_ING_LOAD
+})
+export const startCartLoad = () => ({
+  type: constants.START_CART_LOAD
+})
+export const startSendingOrder = () => ({
+  type: constants.START_SENDING_ORDER
 })
 export const addExtraIngredient = (ingredient) => ({
   type: constants.ADD_EXTRA_INGREDIENT,

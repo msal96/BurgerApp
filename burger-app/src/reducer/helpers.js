@@ -43,12 +43,24 @@ export const updateChosenIngredients = (arr, ingredient, action) => {
   return result
 }
 export const formatBurger = (basket) => {
-  const {ingredients, price} = basket
+  let {ingredients, price} = basket
   let obj = {
     burgerPrice: price
   }
-  ingredients.map(item => {
+  ingredients.forEach(item => {
     obj[item.type] = item.amount
   })
+  return obj
+}
+export const formatCart = cart => {
+  const {Products, TotalPrice} = cart
+  let obj = {
+    totalPrice: TotalPrice,
+    burgers: []
+  }
+  for (let i in Products) {
+    obj.burgers.push(Products[i])
+  }
+  console.log(obj)
   return obj
 }

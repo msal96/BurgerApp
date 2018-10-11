@@ -10,21 +10,10 @@ export const addItemToCartInDB = (obj, cartId) => {
   )
 }
 
-// export const getCartContentFromDB = () => {
-//   axios({
-//     method: 'GET',
-//     url: '/cart/{cartId}',
-//   }).then(cart => console.log(cart))
-//     .catch(error => console.log(error))
-// }
-
-// export const sendOrderToDB = (order) => {
-//   axios({
-//     method: 'POST',
-//     url: '/cart/{cartId}/checkout',
-//     data: {
-//       order
-//     }
-//   }).then(data => console.log(data))
-//     .catch(error => console.log(error))
-// }
+export const getCartContentFromDB = (cartId) => {
+  return axios.get(`https://ail52vyl9g.execute-api.us-east-1.amazonaws.com/BurgersApi/cart/${cartId}`)
+}
+export const sendOrderToDB = (cartId, order) => {
+  const url = `https://ail52vyl9g.execute-api.us-east-1.amazonaws.com/BurgersApi/cart/${cartId}/checkout`
+  return axios.post(url, {...order})
+}

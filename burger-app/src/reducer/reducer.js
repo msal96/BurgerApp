@@ -3,7 +3,8 @@ import {
   formatIngredients,
   modifyItemAmount,
   updateChosenIngredients,
-  resetAmount
+  resetAmount,
+  formatCart
   // filterByAmount,
 } from './helpers'
 
@@ -13,11 +14,15 @@ const initialState = {
     extra: []
   },
   basket: [],
+  cart: {
+    totalPrice: 0,
+    burgers: []
+  },
   chosenIngredients: [],
   currentPrice: 0,
   totalPrice: 0,
   showModal: false,
-  cartId: ''
+  cartId: '70'
 }
 
 const reducer = (state = initialState, action) => {
@@ -86,9 +91,10 @@ const reducer = (state = initialState, action) => {
         cartId: action.payload.id
       }
     case constants.PUT_CART_TO_GLOBAL_STATE:
+      console.log('red cart:', action.payload.cart)
       return {
         ...state,
-        basket: [...action.payload.cart]
+        cart: formatCart(action.payload.cart)
       }
     case constants.ADD_EXTRA_INGREDIENT:
       const {ingredient} = action.payload
