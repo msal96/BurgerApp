@@ -1,19 +1,13 @@
 import constants from '../constants/constants'
 import {
   formatIngredients,
-  filterByAmount,
   modifyItemAmount,
-  updateChosenIngredients
+  updateChosenIngredients,
+  resetAmount
+  // filterByAmount,
 } from './helpers'
 
 const initialState = {
-  // ingredients: [
-  //   { type: 'salad', amount: 0, price: 1 },
-  //   { type: 'meat', amount: 0, price: 4 },
-  //   { type: 'cheese', amount: 0, price: 2 },
-  //   { type: 'bacon', amount: 0, price: 3 }
-  // ],
-
   ingredients: {
     normal: [],
     extra: []
@@ -61,37 +55,27 @@ const reducer = (state = initialState, action) => {
         showModal: show
       }
     case constants.ADD_TO_BASKET:
-      let { ingredients, basket, totalPrice } = state
+      let { ingredients } = state
       let burger = {
-        ingredients: filterByAmount(ingredients),
+        ingredients: [...ingredients.normal],
         price: state.currentPrice
       }
-      totalPrice += burger.price
-      basket.push(burger)
       return {
         ...state,
-        basket,
-        totalPrice
+        basket: burger
       }
     case constants.RESET_INGREDIENTS:
       return {
         ...state,
-        ingredients: [
-          { type: 'salad', amount: 0, price: 1 },
-          { type: 'meat', amount: 0, price: 4 },
-          { type: 'cheese', amount: 0, price: 2 },
-          { type: 'bacon', amount: 0, price: 3 }
-        ],
+        ingredients: {
+          ...state.ingredients,
+          normal: resetAmount(state.ingredients.normal)
+        },
         chosenIngredients: [],
         currentPrice: 0
       }
     case constants.PUT_INGS_TO_GLOBAL_STATE:
       const { normalIngrediends, extraIngredients } = action.payload.ingredients
-      console.log('ssss:', normalIngrediends, extraIngredients)
-      console.log(
-        'fct:',
-        formatIngredients(normalIngrediends, extraIngredients)
-      )
       return {
         ...state,
         ingredients: formatIngredients(normalIngrediends, extraIngredients)
@@ -114,6 +98,12 @@ const reducer = (state = initialState, action) => {
           ...state.ingredients,
           normal: [...state.ingredients.normal, ingredient]
         }
+      }
+    case constants.PUT_TOTAL_PRICE_TO_GS:
+      console.log('totaaal:', action.payload)
+      return {
+        ...state,
+        totalPrice: action.payload.total
       }
     default:
       return state

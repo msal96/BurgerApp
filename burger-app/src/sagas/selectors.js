@@ -1,8 +1,5 @@
-export const getBasketAndTotalPrice = state => ({
+export const getBasketAndIdSelector = state => ({
   basket: state.basket,
-  total: state.totalPrice
+  cartId: state.cartId
 })
-
-export const getCartIdSelector = state => ({
-  cartId: state.cartId,
-})
+export const getCartIdSelector = state => state.cartId

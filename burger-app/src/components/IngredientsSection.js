@@ -19,19 +19,20 @@ class IngredientsSection extends Component {
     addIngredient(type, 1)
     updateCurrentPrice(amount)
     updateChosenIngredients(type, 'add')
+
   }
   onClickLess = (type, amount) => {
     const { addIngredient, updateCurrentPrice, updateChosenIngredients, ingredients } = this.props
-    let result = ingredients.map(item => item.type === type && item.amount>0)
+    let result = ingredients.normal.map(item => item.type === type && item.amount>0)
     if(result.includes(true)) {
     addIngredient(type, -1)
     updateCurrentPrice(amount)
     updateChosenIngredients(type, 'remove')
     }
   }
-
   componentDidMount () {
     this.props.initialIngredientsLoad()
+    toggleModal(true)
   }
 
   render() {

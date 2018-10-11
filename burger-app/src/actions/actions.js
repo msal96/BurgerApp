@@ -32,7 +32,9 @@ export const toggleModal = (show) => ({
 export const addToBasket = () => ({
   type: constants.ADD_TO_BASKET
 })
-
+export const sendBurgerToDb = () => ({
+  type: constants.SEND_BURGER_TO_DB
+})
 export const putIngredientsToGS = (ingredients) => ({
   type: constants.PUT_INGS_TO_GLOBAL_STATE,
   payload: {
@@ -61,5 +63,11 @@ export const addExtraIngredient = (ingredient) => ({
   type: constants.ADD_EXTRA_INGREDIENT,
   payload: {
     ingredient
+  }
+})
+export const putTotalPriceToGs = total => ({
+  type: constants.PUT_TOTAL_PRICE_TO_GS,
+  payload: {
+    total
   }
 })

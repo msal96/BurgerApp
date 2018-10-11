@@ -21,7 +21,7 @@ const BurgerBuilderPage = props => {
 }
 
 const mapStateToProps = state => ({
-  ingredients: state.ingredients,
+  ingredients: state.ingredients.normal,
   showModal: state.showModal
 })
 
