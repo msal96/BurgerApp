@@ -1,8 +1,8 @@
 import constants from '../constants/constants'
-import { 
-  formatIngredients, 
-  filterByAmount, 
-  modifyItemAmount, 
+import {
+  formatIngredients,
+  filterByAmount,
+  modifyItemAmount,
   updateChosenIngredients
 } from './helpers'
 
@@ -29,7 +29,7 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case constants.ADD_INGREDIENT: {
-      const {type, amount} = action.payload
+      const { type, amount } = action.payload
       return {
         ...state,
         ingredients: {
@@ -48,7 +48,11 @@ const reducer = (state = initialState, action) => {
     case constants.UPDATE_CHOSEN_INGREDIENTS:
       return {
         ...state,
-        chosenIngredients: updateChosenIngredients(state.chosenIngredients, action.payload.ingredient, action.payload.action)
+        chosenIngredients: updateChosenIngredients(
+          state.chosenIngredients,
+          action.payload.ingredient,
+          action.payload.action
+        )
       }
     case constants.TOGGLE_MODAL:
       const { show } = action.payload
@@ -81,25 +85,38 @@ const reducer = (state = initialState, action) => {
         chosenIngredients: [],
         currentPrice: 0
       }
-      case constants.PUT_INGS_TO_GLOBAL_STATE:
-        const { normalIngrediends, extraIngredients } = action.payload.ingredients
-          console.log('ssss:', normalIngrediends, extraIngredients)
-          console.log('fct:', formatIngredients(normalIngrediends, extraIngredients))
-        return {
-          ...state,
-          ingredients: formatIngredients(normalIngrediends, extraIngredients)
+    case constants.PUT_INGS_TO_GLOBAL_STATE:
+      const { normalIngrediends, extraIngredients } = action.payload.ingredients
+      console.log('ssss:', normalIngrediends, extraIngredients)
+      console.log(
+        'fct:',
+        formatIngredients(normalIngrediends, extraIngredients)
+      )
+      return {
+        ...state,
+        ingredients: formatIngredients(normalIngrediends, extraIngredients)
+      }
+    case constants.PUT_ID_TO_GLOBAL_STATE:
+      return {
+        ...state,
+        cartId: action.payload.id
+      }
+    case constants.PUT_CART_TO_GLOBAL_STATE:
+      return {
+        ...state,
+        basket: [...action.payload.cart]
+      }
+    case constants.ADD_EXTRA_INGREDIENT:
+      const {ingredient} = action.payload
+      return {
+        ...state,
+        ingredients: {
+          ...state.ingredients,
+          normal: [...state.ingredients.normal, ingredient]
         }
-      case constants.PUT_ID_TO_GLOBAL_STATE:
-        return {
-          ...state,
-          cartId: action.payload.id
-        }
-      case constants.PUT_CART_TO_GLOBAL_STATE:
-        return {
-          ...state,
-          basket: [...action.payload.cart]
-        }
-    default: return state
+      }
+    default:
+      return state
   }
 }
 export default reducer

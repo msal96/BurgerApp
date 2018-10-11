@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import axios from 'axios'
+import Extra from './Extra'
 
 import { 
   addIngredient, 
@@ -38,6 +38,10 @@ class IngredientsSection extends Component {
     const { ingredients, currentPrice, toggleModal } = this.props
     return (
       <IngredientsSectionWrapper>
+        <ExtraDiv>
+            <Extra />
+        </ExtraDiv>
+        <ExtraDiv>
         <CurrentPrice>Current Price: {currentPrice}</CurrentPrice>
         {
           ingredients.normal.map(item => (
@@ -56,6 +60,7 @@ class IngredientsSection extends Component {
         }
         <OrderButton onClick={() => toggleModal(true)}> ORDER NOW </OrderButton>
         <NavLink to='/checkout'><OrderButton> Go to checkout </OrderButton></NavLink>
+        </ExtraDiv>
       </IngredientsSectionWrapper>
     )
   }
@@ -67,8 +72,8 @@ const IngredientsSectionWrapper = styled.div`
   width: 100%
   padding: 1.5em 0
   display: flex
-  flex-direction: column
   align-items: center
+  justify-content: center;
   font-family: Kodchasan
 `
 const IngredientWrapper = styled.div`
@@ -76,6 +81,14 @@ const IngredientWrapper = styled.div`
   width: 20%
   display: flex
   justify-content: flex-end
+  align-items: center
+`
+const ExtraDiv = styled.div`
+  margin: 0.5em
+  width: 50%
+  display: flex
+  justify-content: center
+  flex-direction: column
   align-items: center
 `
 const OrderButton = styled.button`

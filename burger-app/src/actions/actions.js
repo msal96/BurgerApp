@@ -57,3 +57,9 @@ export const putCartToGS = (cart) => ({
 export const initialIngredientsLoad = () => ({
   type: constants.INITIAL_ING_LOAD
 })
+export const addExtraIngredient = (ingredient) => ({
+  type: constants.ADD_EXTRA_INGREDIENT,
+  payload: {
+    ingredient
+  }
+})
