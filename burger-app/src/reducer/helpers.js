@@ -7,7 +7,6 @@ export const formatIngredients = (normalObj, extraObj) => {
   for (let i in normalObj) {
     result.normal.push({ type: i, amount: 0, price: normalObj[i] })
   }
-
   for (let i in extraObj) {
     result.extra.push({ type: i, amount: 0, price: extraObj[i] })
   }

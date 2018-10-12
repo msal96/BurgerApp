@@ -19,7 +19,6 @@ const initialState = {
   },
   chosenIngredients: [],
   currentPrice: 0,
-  totalPrice: 0,
   showModal: false,
   cartId: '',
   successOrderMessage: false
@@ -112,7 +111,12 @@ const reducer = (state = initialState, action) => {
     case constants.SHOW_SUCCESS_MESSAGE:
       return {
         ...state,
-        successOrderMessage: action.payload.value
+        successOrderMessage: action.payload.value,
+        cartId: '',
+        cart: {
+          totalPrice: 0,
+          burgers: []
+        }
       }
     default:
       return state

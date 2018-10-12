@@ -56,14 +56,12 @@ export const putIdToGS = (id) => ({
   }
 })
 
-
 export const putCartToGS = cart => ({
   type: constants.PUT_CART_TO_GLOBAL_STATE,
   payload: {
     cart
   }
 })
-
 
 export const initialIngredientsLoad = () => ({
   type: constants.INITIAL_ING_LOAD

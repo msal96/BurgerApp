@@ -1,12 +1,13 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
-import {startCartLoad, startSendingOrder} from '../actions/actions'
+import {startCartLoad, startSendingOrder, resetIngredients} from '../actions/actions'
 
 class CheckoutBurgers extends Component {
   componentDidMount () {
-    const { startCartLoad } = this.props
+    const { startCartLoad, resetIngredients } = this.props
     startCartLoad()
+    resetIngredients()
   }
 
   render () {
@@ -64,7 +65,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   startCartLoad,
-  startSendingOrder
+  startSendingOrder,
+  resetIngredients
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckoutBurgers)

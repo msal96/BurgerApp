@@ -1,15 +1,16 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { showSuccessMessage } from '../actions/actions'
 
 const SuccessOrder = (props) => {
-  return(
+  return (
     <div>
       {props.successOrder ? <Wrapper>
         <div>Your order was sucessfully placed!</div>
-        <ButtonOK onClick={() => props.showSuccessMessage(false)}>OK</ButtonOK>
+        <NavLink to='/' exact><ButtonOK onClick={() => props.showSuccessMessage(false)}>OK</ButtonOK></NavLink>
       </Wrapper> : null}
     </div>
   )
