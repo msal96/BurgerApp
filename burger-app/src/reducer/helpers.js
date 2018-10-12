@@ -61,6 +61,5 @@ export const formatCart = cart => {
   for (let i in Products) {
     obj.burgers.push(Products[i])
   }
-  console.log('[FORMAT CART FUNCTION: OBJECT]',obj)
   return obj
 }

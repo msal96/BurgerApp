@@ -91,7 +91,6 @@ const reducer = (state = initialState, action) => {
         cartId: action.payload.id
       }
     case constants.PUT_CART_TO_GLOBAL_STATE:
-      console.log('red cart:', action.payload.cart)
       return {
         ...state,
         cart: formatCart(action.payload.cart)

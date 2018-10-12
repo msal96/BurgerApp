@@ -14,7 +14,6 @@ import {
 import {
   putIngredientsToGS,
   putIdToGS,
-  putTotalPriceToGs,
   putCartToGS,
   showSuccessMessage
 } from '../actions/actions'
@@ -28,11 +27,8 @@ function * getIngredientsAndCartId () {
 
 function * createCartAndAddBurgerToCart () {
   const stateId = yield select(getCartIdSelector)
-  console.log('[createCartAndAddBurgerToCart] STATE ID: ]', stateId)
   if (!stateId) {
-    console.log('[createCartAndAddBurgerToCart INSIDE IF:]')
     const responseInitId = yield call(initializeCartInDB)
-    console.log('[createCartAndAddBurgerToCart] responseInitId: ', responseInitId)
     
     if (responseInitId.status === 200) {
       const cartId = '' + responseInitId.data.cartID
@@ -43,16 +39,12 @@ function * createCartAndAddBurgerToCart () {
   const cartId = basketAndId.cartId
   let burger = formatBurger(basketAndId.basket)
   burger = filterByAmount(burger)
-  console.log('[createCartAndAddBurgerToCart] BURGER:', burger)
-  const response = yield call(addItemToCartInDB, burger, cartId)
-  //yield put(putTotalPriceToGs(response.data.TotalPrice))
+  yield call(addItemToCartInDB, burger, cartId)
 }
 
 function * getCartContent () {
   const cartId = yield select(getCartIdSelector)
-  console.log('[GET CART CONTENT CART ID:]', cartId)
   const response = yield call(getCartContentFromDB, cartId)
-  console.log('[GET CART CONTENT RESPONSE:]', response)
   if (response.status === 200) {
     yield put(putCartToGS(response.data))
   }
@@ -61,7 +53,6 @@ function * getCartContent () {
 function * placeOrder () {
   const order = yield select(getCartSelector)
   const response = yield call(sendOrderToDB, order.cartId, order.cart)
-  console.log('[PLACE ORDER SAGA: Response]', response)
   if (response.status === 200) {
     yield put(showSuccessMessage(true))
   }
