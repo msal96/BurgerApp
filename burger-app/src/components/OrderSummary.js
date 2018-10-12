@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
-import { toggleModal, addToBasket, resetIngredients, sendBurgerToDb } from '../actions/actions'
+import { toggleModal, addToBasket, resetIngredients, sendBurgerToDb  } from '../actions/actions'
 
 const OrderSummary = props => {
   const ingredientSummary = props.ingredients.map(item => (
@@ -10,11 +10,11 @@ const OrderSummary = props => {
     </ListItem>
   ))
   const addToBasketAndResetIngredients = () => {
-    const { addToBasket, resetIngredients, toggleModal, sendBurgerToDb } = props
+    const { addToBasket, resetIngredients, toggleModal, sendBurgerToDb  } = props
     addToBasket()
+    sendBurgerToDb()
     resetIngredients()
     toggleModal(false)
-    sendBurgerToDb()
   }
   return (
     <OrderSummaryWrapper>
@@ -42,7 +42,8 @@ const mapDispatchToProps = {
   toggleModal,
   addToBasket,
   resetIngredients,
-  sendBurgerToDb
+  sendBurgerToDb,
+  
 }
 
 export default connect(

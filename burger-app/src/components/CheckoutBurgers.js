@@ -4,22 +4,17 @@ import styled from 'styled-components'
 import {startCartLoad, startSendingOrder} from '../actions/actions'
 
 class CheckoutBurgers extends Component {
-  // const basket = [...props.basket]
-  // const {totalPrice} = props
   componentDidMount () {
-    const {startCartLoad} = this.props
+    const { startCartLoad } = this.props
     startCartLoad()
   }
   render () {
-    console.log('checkout cart:', this.props.cart)
     const {burgers, totalPrice} = this.props.cart
-    const properties = Object.keys(burgers)
-    console.log('prood', burgers)
     return (
       <CheckoutDiv>
         <ObjectDiv>{`Your Basket's Total: ${totalPrice}`}</ObjectDiv>
         <ObjectDiv>{burgers.map((item, index) => <Item key={index}>
-          {Object.keys(item).map(props => <div>{`${props}:${item[props]}`}</div>)}
+          {Object.keys(item).map((props, index) => <div key={index}>{`${props}:${item[props]}`}</div>)}
         </Item>)}</ObjectDiv>
         <PlaceOrder onClick={() => this.props.startSendingOrder()}>Place Order</PlaceOrder>
       </CheckoutDiv>
