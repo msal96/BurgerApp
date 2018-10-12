@@ -5,7 +5,6 @@ import {
   updateChosenIngredients,
   resetAmount,
   formatCart
-  // filterByAmount,
 } from './helpers'
 
 const initialState = {
@@ -22,7 +21,7 @@ const initialState = {
   currentPrice: 0,
   totalPrice: 0,
   showModal: false,
-  cartId: '70'
+  cartId: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -106,7 +105,6 @@ const reducer = (state = initialState, action) => {
         }
       }
     case constants.PUT_TOTAL_PRICE_TO_GS:
-      console.log('totaaal:', action.payload)
       return {
         ...state,
         totalPrice: action.payload.total

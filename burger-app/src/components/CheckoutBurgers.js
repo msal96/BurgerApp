@@ -13,11 +13,14 @@ class CheckoutBurgers extends Component {
   render () {
     console.log('checkout cart:', this.props.cart)
     const {burgers, totalPrice} = this.props.cart
+    const properties = Object.keys(burgers)
     console.log('prood', burgers)
     return (
       <CheckoutDiv>
         <ObjectDiv>{`Your Basket's Total: ${totalPrice}`}</ObjectDiv>
-        <ObjectDiv>{burgers.map((item, index) => <div key={index}>{JSON.stringify(item)}</div>)}</ObjectDiv>
+        <ObjectDiv>{burgers.map((item, index) => <Item key={index}>
+          {Object.keys(item).map(props => <div>{`${props}:${item[props]}`}</div>)}
+        </Item>)}</ObjectDiv>
         <PlaceOrder onClick={() => this.props.startSendingOrder()}>Place Order</PlaceOrder>
       </CheckoutDiv>
     )
@@ -34,17 +37,29 @@ export default connect(mapStateToProps, mapDispatchToProps)(CheckoutBurgers)
 const CheckoutDiv = styled.div`
   display: flex;
   justify-content: center
+  align-items: center
+  
   flex-direction: column
-  background-color: yellow
 `
 const ObjectDiv = styled.div`
   display: flex;
   justify-content: center
-  flex-direction: column
-  background-color: yellow
+  flex-direction: row
+  margin: 1em
+`
+const Item = styled.div`
+  margin: 1em
 `
 const PlaceOrder = styled.button`
   display: flex
+  align-items: center
   justify-content: center
   width: 100px
+  cursor: pointer
+  border-radius: 0.5em
+  padding: 0.25em
+  &:hover {
+    background-color: #6FB748
+    color: white
+  }
 `

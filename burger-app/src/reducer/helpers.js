@@ -15,12 +15,6 @@ export const formatIngredients = (normalObj, extraObj) => {
   return result
 }
 
-export const filterByAmount = arr => {
-  let result = []
-  arr.map(item => (item.amount > 0 ? result.push(item) : null))
-  return result
-}
-
 export const modifyItemAmount = (items, type, value) => {
   console.log('modiff:', items, type, value)
   return items.map(
@@ -34,7 +28,14 @@ export const resetAmount = (normalIngs) => {
       item.amount !== 0 ? { ...item, amount: 0 } : item
   )
 }
-
+export const filterByAmount = obj => {
+  for (let i in obj) {
+    if (obj[i] === 0) {
+      delete obj[i]
+    }
+  }
+  return obj
+}
 export const updateChosenIngredients = (arr, ingredient, action) => {
   let result = [...arr]
   action === 'add'

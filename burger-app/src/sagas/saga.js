@@ -16,7 +16,7 @@ import {
   putTotalPriceToGs,
   putCartToGS
 } from '../actions/actions'
-import { formatBurger } from '../reducer/helpers'
+import { formatBurger, filterByAmount } from '../reducer/helpers'
 function * getIngredientsAndCartId () {
   const response = yield call(getIngredientsFromDB)
   console.log('[GET INGREDIENTS SAGA]', response)
@@ -36,7 +36,9 @@ function * addBurgerToCart () {
   const basketAndId = yield select(getBasketAndIdSelector)
   const cartId = basketAndId.cartId
   console.log('iddd:', cartId)
-  const burger = formatBurger(basketAndId.basket)
+  console.log('fctFormat:', formatBurger(basketAndId.basket))
+  let burger = formatBurger(basketAndId.basket)
+  burger = filterByAmount(burger)
   console.log('burger saga:', burger)
   const response = yield call(addItemToCartInDB, burger, cartId)
   console.log('respooonse:', response)
