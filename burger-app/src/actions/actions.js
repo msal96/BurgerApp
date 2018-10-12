@@ -76,3 +76,9 @@ export const putTotalPriceToGs = total => ({
     total
   }
 })
+export const showSuccessMessage = value => ({
+  type: constants.SHOW_SUCCESS_MESSAGE,
+  payload: {
+    value
+  }
+})

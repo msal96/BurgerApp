@@ -16,7 +16,6 @@ export const formatIngredients = (normalObj, extraObj) => {
 }
 
 export const modifyItemAmount = (items, type, value) => {
-  console.log('modiff:', items, type, value)
   return items.map(
     item =>
       item.type === type ? { ...item, amount: item.amount + value } : item
@@ -62,6 +61,6 @@ export const formatCart = cart => {
   for (let i in Products) {
     obj.burgers.push(Products[i])
   }
-  console.log(obj)
+  console.log('[FORMAT CART FUNCTION: OBJECT]',obj)
   return obj
 }

@@ -21,7 +21,8 @@ const initialState = {
   currentPrice: 0,
   totalPrice: 0,
   showModal: false,
-  cartId: ''
+  cartId: '',
+  successOrderMessage: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -108,6 +109,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         totalPrice: action.payload.total
+      }
+    case constants.SHOW_SUCCESS_MESSAGE:
+      return {
+        ...state,
+        successOrderMessage: action.payload.value
       }
     default:
       return state

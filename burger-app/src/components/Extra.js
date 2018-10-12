@@ -1,28 +1,34 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import styled from 'styled-components'
-import {addExtraIngredient} from '../actions/actions'
+
+import { addExtraIngredient } from '../actions/actions'
+
 const Extra = (props) => {
-  const {extra, addExtraIngredient} = props
-  console.log('extraa:', extra)
+  const { extra, addExtraIngredient } = props
   return (
-    <MainDiv>
+    <Wrapper>
       <div>Extra ingredients</div>
       {
         extra.map((item, index) => <button key={index} onClick={() => addExtraIngredient(item)}>{item.type}</button>)
       }
-    </MainDiv>
+    </Wrapper>
   )
 }
-const mapStateToProps = state => ({
-  extra: state.ingredients.extra
-})
-const mapDispatchToProps = {
-  addExtraIngredient
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Extra)
-const MainDiv = styled.div`
+
+const Wrapper = styled.div`
   display: flex
   justify-content: center
   flex-direction: column
 `
+
+const mapStateToProps = state => ({
+  extra: state.ingredients.extra
+})
+
+const mapDispatchToProps = {
+  addExtraIngredient
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Extra)
+
